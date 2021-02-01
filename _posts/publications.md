@@ -1,5 +1,3 @@
-# Publications
-
 ---
 layout: post
 title: Publications
