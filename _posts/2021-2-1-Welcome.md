@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Welcome to the Computational Chemistry Group at Cal Poly San Luis Obispo.
+title: Welcome!
 ---
 
 Research in our group focuses on using computational chemsitry to characterize noncovalent interactions in complex chemical contexts.  We use a variety of computational chemistry techniques, ranging from ab initio electronic structure theory to molecular dynamics to solve complex chemical problems. 
