@@ -11,7 +11,7 @@ description: Atmospheric and Analytical Chemistry Research at Cal Poly, San Luis
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 # To use the Cal Poly Learn by Doing logo put https://raw.githubusercontent.com/[username]/[website_name]/master/images/CP_LBD.jpg
 # But fill in your actual username and website name
-avatar: 
+avatar: https://raw.githubusercontent.com/zoerbgroup/zoerbgroup.github.io/master/images/CP_LBD.jpg
 
 #
 # Flags below are optional
@@ -23,12 +23,12 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: 
+  github: zoerbgroup
   instagram:
   linkedin:
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: 
+  twitter: MattZoerb
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
