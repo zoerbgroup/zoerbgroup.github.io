@@ -7,8 +7,10 @@ permalink: /links/
 *This is a collection of links that are useful to our research, just plain interesting, or both!*
 
 
-[Cal Poly Department of Chemistry and Biochemistry](https://chemistry.calpoly.edu/)\
-[Cal Poly College of Science and Mathematics](https://cosam.calpoly.edu/)\
+[Cal Poly - Department of Chemistry and Biochemistry](https://chemistry.calpoly.edu/)
+
+[Cal Poly - College of Science and Mathematics](https://cosam.calpoly.edu/)
+
 [Cal Poly Learning Resources](https://atom.calpoly.edu/resources/)
 
 [CARB AQMIS](https://www.arb.ca.gov/aqmis2/aqmis2.php)\
