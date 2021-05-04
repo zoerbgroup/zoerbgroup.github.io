@@ -9,8 +9,7 @@ permalink: /pubs/
 [https://doi.org/10.1021/acsearthspacechem.0c00202](https://doi.org/10.1021/acsearthspacechem.0c00202)
 
 
-# External Presentations
-
+# External Presentations\
 ## Posters:
 1.	“Organic Tracer Correlation in Aerosol Emissions from Biomass Burning in Western North America”
 Enders, J.J.; Schenkelberg, M.E.; Zoerb, M.C. American Geophysical Union Fall Meeting, San Francisco, CA; December 9-13, 2019.	
@@ -21,8 +20,7 @@ Phan, J.A.; Rhead, T.W.; Enders, J.J.; Schenkelberg, M.E.; Zoerb, M.C. Informal 
 3.	“Size-Resolved Composition of Organic Aerosol on the California Central Coast”
 Babila, J.E.; Depew, C.J.; Heinrich, S.E.; Zoerb, M.C. American Geophysical Union Fall Meeting, San Francisco, CA; December 12-16, 2016. 
 
-# Cal Poly Presentations:
-
+# Cal Poly Presentations:\
 ## Talks:
 1.	“Chemical Transformations of Biomass Burning Organic Aerosols: Climate and Air Quality Impacts”
 Zoerb, M.C., Cal Poly Chemistry and Biochemistry Department Seminar (virtual), October 2, 2020
