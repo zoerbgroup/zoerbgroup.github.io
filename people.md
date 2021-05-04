@@ -9,7 +9,7 @@ permalink: /people/
 Christopher Griffin \
 Azad Coney \
 Carmen Ramirez \
-Adeline Woltkamp \
+Adeline Woltkamp 
 
 ## Former Members
 Jonathon Babila \
