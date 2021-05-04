@@ -4,14 +4,14 @@ title: Publications
 permalink: /pubs/
 ---
 
-## Papers
+# Papers
 1. Enders, J.J.; Rhead, T.W.; Phan, J.A.; Zoerb, M.C. Impacts of 2018 California Wildfires on Organic Aerosol Composition and Air Quality Under Low Smoke Conditions. ACS Earth Space Chem., **2021**, *5*, 163.\
 [https://doi.org/10.1021/acsearthspacechem.0c00202](https://doi.org/10.1021/acsearthspacechem.0c00202)
 
 
-## External Presentations
+# External Presentations
 
-# Posters:
+## Posters:
 1.	“Organic Tracer Correlation in Aerosol Emissions from Biomass Burning in Western North America”
 Enders, J.J.; Schenkelberg, M.E.; Zoerb, M.C. American Geophysical Union Fall Meeting, San Francisco, CA; December 9-13, 2019.	
 
@@ -21,9 +21,9 @@ Phan, J.A.; Rhead, T.W.; Enders, J.J.; Schenkelberg, M.E.; Zoerb, M.C. Informal 
 3.	“Size-Resolved Composition of Organic Aerosol on the California Central Coast”
 Babila, J.E.; Depew, C.J.; Heinrich, S.E.; Zoerb, M.C. American Geophysical Union Fall Meeting, San Francisco, CA; December 12-16, 2016. 
 
-## Cal Poly Presentations:
+# Cal Poly Presentations:
 
-# Talks:
+## Talks:
 1.	“Chemical Transformations of Biomass Burning Organic Aerosols: Climate and Air Quality Impacts”
 Zoerb, M.C., Cal Poly Chemistry and Biochemistry Department Seminar (virtual), October 2, 2020
 
@@ -42,7 +42,7 @@ Rhead, T.W.; Phan, J.A.; Voorheis, E.H.; Zoerb, M.C. Frost Research Symposium, A
 6.	“Soberanes Fire Influence on the Composition of Submicrometer Aerosol at Cal Poly”
 Depew, C.J.; Babila, J.E.; Zoerb, M.C. Frost Research Symposium, August 12, 2016
 
-# Posters:
+## Posters:
 1.	“Comparing Organic Aerosols in Marine and Terrestrial Environments”
 Phan, J.A.; Rhead, T.W.; Voorheis, E.H.; Zoerb, M.C. Frost Research Symposium, August 29, 2018
 
