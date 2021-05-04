@@ -14,7 +14,7 @@ Adeline Woltkamp
 ## Former Members
 Jonathon Babila \
 Charles Depew \
-Shannon Heinrich \ 
+Shannon Heinrich \
 Taylor Abbott \
 Sabrina King \
 Jerry Phan \
