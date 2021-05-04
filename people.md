@@ -7,14 +7,21 @@ permalink: /people/
 ## Current Members
 
 Christopher Griffin
-
 Azad Coney
-
 Carmen Ramirez
-
 Adeline Woltkamp
 
 ## Former Members
+Jonathon Babila
+Charles Depew
+Shannon Heinrich
+Taylor Abbott
+Sabrina King
+Jerry Phan
+Tyrell Rhead
+Emmaline Voorheis
+Jonas Enders
+Mica Schenkelberg
 
 
 ## Professor Zoerb
