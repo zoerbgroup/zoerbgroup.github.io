@@ -12,8 +12,8 @@ Carmen Ramirez
 Adeline Woltkamp
 
 ## Former Members
-Jonathon Babila
-Charles Depew
+Jonathon Babila \
+Charles Depew \
 Shannon Heinrich
 Taylor Abbott
 Sabrina King
