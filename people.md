@@ -21,7 +21,7 @@ Jerry Phan \
 Tyrell Rhead \
 Emmaline Voorheis \
 Jonas Enders \
-Mica Schenkelberg \ 
+Mica Schenkelberg \
 Azad Coney 
 
 
