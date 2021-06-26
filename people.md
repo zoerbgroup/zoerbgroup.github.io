@@ -7,9 +7,9 @@ permalink: /people/
 ## Current Members
 
 Christopher Griffin \
-Azad Coney \
 Carmen Ramirez \
-Adeline Woltkamp 
+Adeline Woltkamp \
+Ryan Galusha
 
 ## Former Members
 Jonathon Babila \
@@ -21,7 +21,8 @@ Jerry Phan \
 Tyrell Rhead \
 Emmaline Voorheis \
 Jonas Enders \
-Mica Schenkelberg
+Mica Schenkelberg \ 
+Azad Coney 
 
 
 ## Professor Zoerb
