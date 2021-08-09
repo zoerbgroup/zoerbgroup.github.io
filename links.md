@@ -8,7 +8,8 @@ permalink: /links/
 
 [Current Air Quality at Cal Poly](https://www.purpleair.com/map?opt=1/mAQI/a10/cC0&select=11856#10/35.2829/-120.8463)\
 We host a [PurpleAir air quality sensor](https://www.purpleair.com) outside our lab, provided by the [San Luis Obispo County Air Quality District](https://www.slocleanair.org/).
-\
+
+---
 
 [Cal Poly - Department of Chemistry and Biochemistry](https://chemistry.calpoly.edu/)
 
