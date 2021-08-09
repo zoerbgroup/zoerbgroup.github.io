@@ -16,3 +16,4 @@ Cal Poly students: If you are interested in joining the team, get in touch! I ha
 ### Contact Professor Zoerb
 
 [mzoerb-at-calpoly.edu](mailto:mzoerb@calpoly.edu)
+[Cal Poly profile](https://chemistry.calpoly.edu/content/faculty/zoerb_matthew)
