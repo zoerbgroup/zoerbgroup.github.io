@@ -25,6 +25,7 @@ Mica Schenkelberg \
 Azad Coney 
 
 
-## Professor Zoerb
+## Matthew Zoerb
 
-![Dr. Zoerb]({{ site.baseurl }}/images/zoerb_pic.jpg){:width="200px"}
+![Dr. Zoerb]({{ site.baseurl }}/images/zoerb_pic.jpg){:width="160px"}
+[Cal Poly profile](https://chemistry.calpoly.edu/content/faculty/zoerb_matthew)
