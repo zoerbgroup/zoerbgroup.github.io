@@ -7,9 +7,10 @@ permalink: /people/
 ## Current Members
 
 Christopher Griffin \
-Carmen Ramirez \
 Adeline Woltkamp \
-Ryan Galusha
+Ryan Galusha \ 
+Shivaang Vyas \ 
+Bethanne Atkinson 
 
 ## Former Members
 Jonathon Babila \
@@ -22,8 +23,8 @@ Tyrell Rhead \
 Emmaline Voorheis \
 Jonas Enders \
 Mica Schenkelberg \
-Azad Coney 
-
+Azad Coney \ 
+Carmen Ramirez
 
 ## Matthew Zoerb
 
