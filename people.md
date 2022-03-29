@@ -8,8 +8,8 @@ permalink: /people/
 
 Christopher Griffin \
 Adeline Woltkamp \
-Ryan Galusha \ 
-Shivaang Vyas \ 
+Ryan Galusha \
+Shivaang Vyas \
 Bethanne Atkinson 
 
 ## Former Members
@@ -23,7 +23,7 @@ Tyrell Rhead \
 Emmaline Voorheis \
 Jonas Enders \
 Mica Schenkelberg \
-Azad Coney \ 
+Azad Coney \
 Carmen Ramirez
 
 ## Matthew Zoerb
