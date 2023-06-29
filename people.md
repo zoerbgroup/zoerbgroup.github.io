@@ -6,11 +6,12 @@ permalink: /people/
 
 ## Current Members
 
-Christopher Griffin \
-Adeline Woltkamp \
-Ryan Galusha \
-Shivaang Vyas \
-Bethanne Atkinson 
+Shivaang Vyas* \
+Lily Huang \
+Jasalyn Avila \
+Rosa-Lynn Flaherty
+Tiffany Kha* \
+*Participating in the 2023 Frost Summer Undergraduate Research Program at Cal Poly
 
 ## Former Members
 Jonathon Babila \
@@ -24,7 +25,11 @@ Emmaline Voorheis \
 Jonas Enders \
 Mica Schenkelberg \
 Azad Coney \
-Carmen Ramirez
+Carmen Ramirez \
+Christopher Griffin \
+Adeline Woltkamp \
+Ryan Galusha \
+Bethanne Atkinson 
 
 ## Matthew Zoerb
 
