@@ -36,3 +36,6 @@ Standard Reference Database
 
 [CRC Handbook](https://http://hbcponline.com/)\
 Chemistry and Physics Reference Source
+
+[AirNow Fire and Smoke Map](https://fire.airnow.gov/)\
+EPA-USDA Forest Service
