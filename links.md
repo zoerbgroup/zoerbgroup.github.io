@@ -26,6 +26,9 @@ Air Quality and Meteorological Information System
 [NASA Worldview](https://worldview.earthdata.nasa.gov/)\
 Satellite images and data of Earth
 
+[AirNow Fire and Smoke Map](https://fire.airnow.gov/)\
+EPA-USDA Forest Service
+
 [NOAA HYSPLIT](https://www.ready.noaa.gov/HYSPLIT.php)\
 National Oceanic and Atmospheric Administration\
 HYbrid Single Particle Lagrangian Integrated Trajectory Model
@@ -37,5 +40,4 @@ Standard Reference Database
 [CRC Handbook](https://http://hbcponline.com/)\
 Chemistry and Physics Reference Source
 
-[AirNow Fire and Smoke Map](https://fire.airnow.gov/)\
-EPA-USDA Forest Service
+
