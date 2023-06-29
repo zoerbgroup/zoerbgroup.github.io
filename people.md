@@ -9,7 +9,7 @@ permalink: /people/
 Shivaang Vyas* \
 Lily Huang \
 Jasalyn Avila \
-Rosa-Lynn Flaherty
+Rosa-Lynn Flaherty \
 Tiffany Kha* \
 *Participating in the 2023 Frost Summer Undergraduate Research Program at Cal Poly
 
