@@ -6,12 +6,8 @@ permalink: /people/
 
 ## Current Members
 
-Shivaang Vyas* \
-Lily Huang \
-Jasalyn Avila \
 Rosa-Lynn Flaherty \
-Tiffany Kha* \
-*Participating in the 2023 Frost Summer Undergraduate Research Program at Cal Poly
+Kayla Toms \
 
 ## Former Members
 Jonathon Babila \
@@ -29,7 +25,11 @@ Carmen Ramirez \
 Christopher Griffin \
 Adeline Woltkamp \
 Ryan Galusha \
-Bethanne Atkinson 
+Bethanne Atkinson \
+Tiffany Kha \
+Shivaang Vyas \
+Lily Huang \
+Jasalyn Avila \
 
 ## Matthew Zoerb
 
