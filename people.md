@@ -7,7 +7,7 @@ permalink: /people/
 ## Current Members
 
 Rosa-Lynn Flaherty \
-Kayla Toms \
+Kayla Toms 
 
 ## Former Members
 Jonathon Babila \
@@ -29,7 +29,7 @@ Bethanne Atkinson \
 Tiffany Kha \
 Shivaang Vyas \
 Lily Huang \
-Jasalyn Avila \
+Jasalyn Avila 
 
 ## Matthew Zoerb
 
