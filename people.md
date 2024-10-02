@@ -7,7 +7,9 @@ permalink: /people/
 ## Current Members
 
 Rosa-Lynn Flaherty \
-Kayla Toms 
+Kayla Toms \
+Mysha Fahmi \
+Mikka Sopenoff 
 
 ## Former Members
 Jonathon Babila \
