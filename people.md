@@ -7,8 +7,6 @@ permalink: /people/
 ## Current Members
 
 Rosa-Lynn Flaherty \
-Kayla Toms \
-Mysha Fahmi \
 Mikka Sopenoff 
 
 ## Former Members
@@ -31,7 +29,9 @@ Bethanne Atkinson \
 Tiffany Kha \
 Shivaang Vyas \
 Lily Huang \
-Jasalyn Avila 
+Jasalyn Avila \
+Kayla Toms \
+Mysha Fahmi 
 
 ## Matthew Zoerb
 
