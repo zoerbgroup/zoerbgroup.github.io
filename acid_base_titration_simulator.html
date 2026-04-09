@@ -1,0 +1,1201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Acid-Base Titration Simulator&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--bg: #0f172a;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--panel: #111827;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--panel-2: #1f2937;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text: #e5e7eb;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--muted: #94a3b8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--accent: #22c55e;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--accent-2: #38bdf8;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--border: #334155;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--highlight: #f59e0b;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-1: #60a5fa;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-2: #f472b6;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-3: #34d399;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-4: #fbbf24;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-5: #a78bfa;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--species-6: #fb7185;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>* { box-sizing: border-box; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, Helvetica, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, #0b1020, #111827);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 1280px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.layout {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: 340px 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.panel {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(17, 24, 39, 0.9);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 30px rgba(0,0,0,0.25);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.controls h2,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.results h2 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.field {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>label {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #dbeafe;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>input, button, select {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--panel-2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>input[type="radio"] {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>accent-color: var(--accent-2);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>button {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, var(--accent), #16a34a);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>button:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>filter: brightness(1.05);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.small {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.84rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.4;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.radio-group {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(5, minmax(0, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.radio-option {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 10px 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(31, 41, 55, 0.7);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>user-select: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.radio-option:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-1px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: #475569;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.radio-option.active {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-color: var(--accent-2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(56, 189, 248, 0.16);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.28);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hover-readouts {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(2, minmax(0, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hover-readouts.single {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hover-box {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(31, 41, 55, 0.8);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hover-box-title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.82rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.hover-box-values {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fef3c7;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.chart-wrap {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(2, 6, 23, 0.45);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.chart-title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>canvas {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #020617;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor: crosshair;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.legend {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.equivalence-list {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding-left: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.readout-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(2, minmax(0, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.readout {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: rgba(31, 41, 55, 0.8);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.readout-title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.82rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.readout-values {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #fef3c7;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.species-legend {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 10px 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #cbd5e1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.species-key {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.species-swatch {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.footer-note {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 900px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.layout {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 640px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.radio-group {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: repeat(3, minmax(0, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.hover-readouts {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid-template-columns: 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Chemistry Acid-Base Titration Simulator&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="subtitle"&gt;Interactive pH and fractional-composition plots for mono- through pentaprotic weak acids titrated with strong base.&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="layout"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel controls"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Controls&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Number of acidic protons&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="radio-group" id="protonsGroup"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option active"&gt;&lt;input type="radio" name="protons" value="1" checked /&gt; 1&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="protons" value="2" /&gt; 2&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="protons" value="3" /&gt; 3&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="protons" value="4" /&gt; 4&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="protons" value="5" /&gt; 5&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="acidConc"&gt;Acid concentration (M)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="acidConc" type="number" min="0.001" max="5" step="0.001" value="0.1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="acidVol"&gt;Initial acid volume (mL)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="acidVol" type="number" min="1" max="1000" step="1" value="50" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="baseConc"&gt;Base concentration (M)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="baseConc" type="number" min="0.001" max="5" step="0.001" value="0.1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="pKa1"&gt;pKa1&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="pKa1" type="number" min="-2" max="20" step="0.01" value="4.76" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="pKa2"&gt;pKa2&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="pKa2" type="number" min="-2" max="20" step="0.01" value="6.35" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="pKa3"&gt;pKa3&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="pKa3" type="number" min="-2" max="20" step="0.01" value="9.25" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="pKa4"&gt;pKa4&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="pKa4" type="number" min="-2" max="20" step="0.01" value="11.20" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="pKa5"&gt;pKa5&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;input id="pKa5" type="number" min="-2" max="20" step="0.01" value="12.35" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="simulateBtn"&gt;Simulate Titration&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field" style="margin-top:14px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Overlay first derivative on titration curve&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="radio-group" id="derivativeGroup" style="grid-template-columns: repeat(2, minmax(0, 1fr));"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option active"&gt;&lt;input type="radio" name="derivativeToggle" value="off" checked /&gt; Off&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="derivativeToggle" value="on" /&gt; On&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="field" style="margin-top:14px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;label&gt;Live hover coordinates&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="radio-group" id="hoverGroup" style="grid-template-columns: repeat(2, minmax(0, 1fr));"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option active"&gt;&lt;input type="radio" name="hoverToggle" value="off" checked /&gt; Off&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="radio-option"&gt;&lt;input type="radio" name="hoverToggle" value="on" /&gt; On&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="chart-wrap" style="margin-top:14px; margin-bottom:0; padding:14px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="chart-title"&gt;Titration Curve Lookup&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label for="lookupMode"&gt;Lookup mode&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="lookupMode" style="width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--panel-2); color:var(--text); font-size:0.95rem;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;option value="ph_from_volume"&gt;Calculate pH from volume&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;option value="volume_from_ph"&gt;Calculate volume from pH&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field" id="lookupVolumeField"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label for="lookupVolumeInput"&gt;Base volume to evaluate (mL)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="lookupVolumeInput" type="number" min="0" step="0.01" value="25.00" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="field" id="lookupPHField" style="display:none;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;label for="lookupPHInput"&gt;Target pH&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input id="lookupPHInput" type="number" min="0" max="14" step="0.01" value="7.00" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button id="lookupBtn" type="button"&gt;Calculate&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hover-readouts single" style="margin-top:12px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hover-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-title"&gt;Lookup result&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-values" id="lookupResultText"&gt;Enter a volume or pH to calculate a corresponding value on the titration curve.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="small"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Model assumptions: weak polyprotic acid titrated with strong base. pH is computed with a full</p>
+<p class="p1"><span class="Apple-converted-space">          </span>charge-balance solver using polyprotic distribution fractions, which smooths the curve through all</p>
+<p class="p1"><span class="Apple-converted-space">          </span>buffer and equivalence regions. Fractional composition is computed from the same alpha fractions.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="footer-note"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Hover over either chart to see live crosshair coordinates. Click the pH plot to pin the nearest computed point.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="panel results"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Graphical Output&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="chart-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="chart-title"&gt;pH Titration Curve&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;canvas id="chart" width="860" height="460"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="legend"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Green curve = pH vs. added base volume. Gold marker = selected point. White crosshair = live hover. Purple dashed curve = first derivative overlay when enabled.</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hover-readouts single"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hover-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-title"&gt;Live hover coordinates&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-values" id="hoverPointText"&gt;Move the cursor over the pH plot.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hover-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-title"&gt;Selected pH plot point&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-values" id="selectedPointText"&gt;Click the pH curve to view x,y coordinates.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="chart-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="chart-title"&gt;Fractional Composition of Acid Species vs pH&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;canvas id="speciesChart" width="860" height="420"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="legend"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>This plot is an alpha-distribution diagram: each curve shows the fraction of total acid present as a given species at each pH.</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="hover-readouts single"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hover-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-title"&gt;Live hover coordinates&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div class="hover-box-values" id="speciesHoverPointText"&gt;Move the cursor over the composition plot.&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="species-legend" id="speciesLegend"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const protonRadios = Array.from(document.querySelectorAll('input[name="protons"]'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const radioOptionEls = Array.from(document.querySelectorAll('.radio-option'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const acidConcEl = document.getElementById('acidConc');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const acidVolEl = document.getElementById('acidVol');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const baseConcEl = document.getElementById('baseConc');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pKa1El = document.getElementById('pKa1');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pKa2El = document.getElementById('pKa2');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pKa3El = document.getElementById('pKa3');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pKa4El = document.getElementById('pKa4');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const pKa5El = document.getElementById('pKa5');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const simulateBtn = document.getElementById('simulateBtn');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const derivativeRadios = Array.from(document.querySelectorAll('input[name="derivativeToggle"]'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const hoverRadios = Array.from(document.querySelectorAll('input[name="hoverToggle"]'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupModeEl = document.getElementById('lookupMode');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupVolumeFieldEl = document.getElementById('lookupVolumeField');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupPHFieldEl = document.getElementById('lookupPHField');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupVolumeInputEl = document.getElementById('lookupVolumeInput');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupPHInputEl = document.getElementById('lookupPHInput');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupBtn = document.getElementById('lookupBtn');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const selectedPointTextEl = document.getElementById('selectedPointText');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const hoverPointTextEl = document.getElementById('hoverPointText');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const speciesHoverPointTextEl = document.getElementById('speciesHoverPointText');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const speciesLegendEl = document.getElementById('speciesLegend');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lookupResultTextEl = document.getElementById('lookupResultText');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const canvas = document.getElementById('chart');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ctx = canvas.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const speciesCanvas = document.getElementById('speciesChart');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sctx = speciesCanvas.getContext('2d');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const FIXED_STEP_ML = 0.01;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const SPECIES_COLORS = ['#60a5fa', '#f472b6', '#34d399', '#fbbf24', '#a78bfa', '#fb7185'];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentPlot = {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>data: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>eqVolumes: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>maxX: 1,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>selectedPoint: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>hoverPoint: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>scales: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesData: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesHoverPoint: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesScales: null,</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesNames: [],</p>
+<p class="p1"><span class="Apple-converted-space">      </span>derivativeData: []</p>
+<p class="p1"><span class="Apple-converted-space">    </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function clamp(value, min, max) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return Math.max(min, Math.min(max, value));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function format(num, digits = 2) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return Number(num).toFixed(digits);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getSelectedProtons() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const selected = protonRadios.find(radio =&gt; radio.checked);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return selected ? parseInt(selected.value, 10) : 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function isDerivativeOverlayOn() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const selected = derivativeRadios.find(radio =&gt; radio.checked);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return selected ? selected.value === 'on' : false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function isLiveHoverOn() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const selected = hoverRadios.find(radio =&gt; radio.checked);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return selected ? selected.value === 'on' : true;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function kw(H) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return 1e-14 / H;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function buildKas(pKas) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return pKas.map(pKa =&gt; Math.pow(10, -pKa));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function speciesFractions(H, kas) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const n = kas.length;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const terms = new Array(n + 1).fill(0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>terms[0] = 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 1; i &lt;= n; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>terms[i] = terms[i - 1] * kas[i - 1] / H;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const denom = terms.reduce((sum, val) =&gt; sum + val, 0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return terms.map(term =&gt; term / denom);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function averageDeprotonation(alpha) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let total = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; alpha.length; i++) total += i * alpha[i];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return total;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function chargeBalanceResidual(logH, params) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { Ca, VaL, Cb, VbL, kas } = params;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const H = Math.pow(10, logH);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const Vtotal = VaL + VbL;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cAcidFormal = (Ca * VaL) / Vtotal;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const cNa = (Cb * VbL) / Vtotal;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const alpha = speciesFractions(H, kas);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const avgNegCharge = averageDeprotonation(alpha);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const acidNegativeCharge = cAcidFormal * avgNegCharge;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return H + cNa - kw(H) - acidNegativeCharge;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function solvePH(params) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let lo = -14;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let hi = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let flo = chargeBalanceResidual(lo, params);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let fhi = chargeBalanceResidual(hi, params);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (Math.abs(flo) &lt; 1e-18) return 14;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (Math.abs(fhi) &lt; 1e-18) return 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (flo * fhi &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const samples = 400;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let prevX = lo;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let prevF = flo;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let found = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 1; i &lt;= samples; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const x = lo + (hi - lo) * i / samples;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const fx = chargeBalanceResidual(x, params);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (prevF === 0) return clamp(-prevX, 0, 14);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (prevF * fx &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lo = prevX;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hi = x;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flo = prevF;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fhi = fx;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>found = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>break;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>prevX = x;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>prevF = fx;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!found) return flo &gt; 0 ? 0 : 14;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; 100; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const mid = 0.5 * (lo + hi);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const fm = chargeBalanceResidual(mid, params);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (Math.abs(fm) &lt; 1e-16 || Math.abs(hi - lo) &lt; 1e-12) return clamp(-mid, 0, 14);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (flo * fm &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>hi = mid;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>fhi = fm;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lo = mid;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>flo = fm;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>return clamp(-0.5 * (lo + hi), 0, 14);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function computePH(VbL, params) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return solvePH({ ...params, VbL });</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function interpolatePHFromData(volumeMl) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const data = currentPlot.data;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!data.length) return null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxIndex = data.length - 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const clampedVolume = clamp(volumeMl, 0, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const indexFloat = clampedVolume / FIXED_STEP_ML;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const lowerIndex = Math.floor(indexFloat);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const upperIndex = Math.min(maxIndex, Math.ceil(indexFloat));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const lower = data[lowerIndex];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const upper = data[upperIndex];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!lower || !upper) return null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (lowerIndex === upperIndex) return lower.pH;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const t = (clampedVolume - lower.volumeMl) / (upper.volumeMl - lower.volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return lower.pH + t * (upper.pH - lower.pH);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function solveVolumeForPH(targetPH) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const params = getParams();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const lowerPH = computePH(0, params);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const upperPH = computePH(currentPlot.maxX / 1000, params);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const minPH = Math.min(lowerPH, upperPH);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxPH = Math.max(lowerPH, upperPH);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (targetPH &lt; minPH || targetPH &gt; maxPH) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let lo = 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let hi = currentPlot.maxX / 1000;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let flo = computePH(lo, params) - targetPH;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let fhi = computePH(hi, params) - targetPH;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (Math.abs(flo) &lt; 1e-10) return 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (Math.abs(fhi) &lt; 1e-10) return currentPlot.maxX;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; 80; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const mid = 0.5 * (lo + hi);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const fm = computePH(mid, params) - targetPH;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (Math.abs(fm) &lt; 1e-8 || Math.abs(hi - lo) &lt; 1e-8) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return mid * 1000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (flo * fm &lt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>hi = mid;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>fhi = fm;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lo = mid;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>flo = fm;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>return 0.5 * (lo + hi) * 1000;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getSpeciesName(n, i) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (i === 0) return `H${n}A`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (i === n) return `A${n === 1 ? '' : i + '-'} `;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const hCount = n - i;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const charge = i;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const acidCore = hCount &gt; 0 ? `H${hCount}A` : 'A';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return charge === 0 ? acidCore : `${acidCore}${charge === 1 ? '-' : charge + '-'}`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getSpeciesDisplayName(n, i) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (i === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return `H&lt;sub&gt;${n}&lt;/sub&gt;A`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const remainingH = n - i;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const base = remainingH &gt; 0 ? `H&lt;sub&gt;${remainingH}&lt;/sub&gt;A` : 'A';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (i === 1) return `${base}&lt;sup&gt;−&lt;/sup&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return `${base}&lt;sup&gt;${i}−&lt;/sup&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function getParams() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const n = getSelectedProtons();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const Ca = parseFloat(acidConcEl.value);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const VaL = parseFloat(acidVolEl.value) / 1000;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const Cb = parseFloat(baseConcEl.value);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pKas = [</p>
+<p class="p1"><span class="Apple-converted-space">        </span>parseFloat(pKa1El.value),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>parseFloat(pKa2El.value),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>parseFloat(pKa3El.value),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>parseFloat(pKa4El.value),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>parseFloat(pKa5El.value)</p>
+<p class="p1"><span class="Apple-converted-space">      </span>].slice(0, n).sort((a, b) =&gt; a - b);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const kas = buildKas(pKas);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return { n, Ca, VaL, Cb, pKas, kas };</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function simulate() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const params = getParams();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { n, Ca, VaL, Cb, kas } = params;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const acidMoles = Ca * VaL;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const equivalenceVolumes = Array.from({ length: n }, (_, i) =&gt; ((i + 1) * acidMoles / Cb) * 1000);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxEq = equivalenceVolumes[equivalenceVolumes.length - 1] || 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxBaseVolMl = maxEq + 50;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const data = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const speciesData = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const derivativeData = [];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const speciesNames = Array.from({ length: n + 1 }, (_, i) =&gt; getSpeciesDisplayName(n, i));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let volumeMl = 0; volumeMl &lt;= maxBaseVolMl + 1e-12; volumeMl += FIXED_STEP_ML) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const VbL = volumeMl / 1000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pH = computePH(VbL, params);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>data.push({ volumeMl, pH });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; data.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let derivative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (i === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>derivative = (data[i + 1].pH - data[i].pH) / (data[i + 1].volumeMl - data[i].volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (i === data.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>derivative = (data[i].pH - data[i - 1].pH) / (data[i].volumeMl - data[i - 1].volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>derivative = (data[i + 1].pH - data[i - 1].pH) / (data[i + 1].volumeMl - data[i - 1].volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>derivativeData.push({ volumeMl: data[i].volumeMl, dpHdV: derivative });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const speciesPHStep = 0.02;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let pH = 0; pH &lt;= 14 + 1e-12; pH += speciesPHStep) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const H = Math.pow(10, -pH);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const alpha = speciesFractions(H, kas);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesData.push({ pH, fractions: alpha });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.data = data;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.eqVolumes = equivalenceVolumes;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.maxX = maxBaseVolMl;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.selectedPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.hoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesData = speciesData;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesHoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesNames = speciesNames;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.derivativeData = derivativeData;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>lookupVolumeInputEl.max = format(maxBaseVolMl, 2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>buildSpeciesLegend(speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateSelectedPointText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawChart(data, equivalenceVolumes, maxBaseVolMl);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawSpeciesChart(speciesData, speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>runLookup();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function buildSpeciesLegend(speciesNames) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesLegendEl.innerHTML = '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>speciesNames.forEach((name, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const item = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.className = 'species-key';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>item.innerHTML = `&lt;span class="species-swatch" style="background:${SPECIES_COLORS[i]}"&gt;&lt;/span&gt;&lt;span&gt;${name}&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesLegendEl.appendChild(item);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateSelectedPointText() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!currentPlot.selectedPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>selectedPointTextEl.textContent = 'Click the pH curve to view x,y coordinates.';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>selectedPointTextEl.textContent = `x = ${format(currentPlot.selectedPoint.volumeMl, 2)} mL, y = ${format(currentPlot.selectedPoint.pH, 3)} pH`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateHoverText() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!isLiveHoverOn()) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hoverPointTextEl.textContent = 'Live hover coordinates are turned off.';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesHoverPointTextEl.textContent = 'Live hover coordinates are turned off.';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (currentPlot.hoverPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hoverPointTextEl.textContent = `x = ${format(currentPlot.hoverPoint.volumeMl, 2)} mL, y = ${format(currentPlot.hoverPoint.pH, 3)} pH`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hoverPointTextEl.textContent = 'Move the cursor over the pH plot.';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (currentPlot.speciesHoverPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const parts = currentPlot.speciesHoverPoint.fractions.map((value, i) =&gt; `${currentPlot.speciesNames[i]} = ${format(value, 3)}`);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesHoverPointTextEl.innerHTML = `pH = ${format(currentPlot.speciesHoverPoint.pH, 3)}; ${parts.join(', ')}`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesHoverPointTextEl.textContent = 'Move the cursor over the composition plot.';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function niceUpperFive(value) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return Math.ceil(value / 5) * 5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function buildScales(targetCanvas, maxX, minY, maxY, bottomPad) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const w = targetCanvas.width;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const h = targetCanvas.height;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pad = { left: 62, right: 20, top: 24, bottom: bottomPad };</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const plotW = w - pad.left - pad.right;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const plotH = h - pad.top - pad.bottom;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>w,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>h,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>pad,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>plotW,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>plotH,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minY,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>maxY,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>xScale(x) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return pad.left + (x / maxX) * plotW;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>yScale(y) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return pad.top + plotH - ((y - minY) / (maxY - minY)) * plotH;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>};</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawAxes(targetCtx, scales, displayedMaxX, yTicks, yLabel, xLabel) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { w, h, pad, xScale, yScale } = scales;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.strokeStyle = 'rgba(148,163,184,0.18)';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineWidth = 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.font = '12px Arial';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillStyle = '#cbd5e1';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>yTicks.forEach(tick =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const py = yScale(tick.value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.moveTo(pad.left, py);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.lineTo(w - pad.right, py);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.fillText(tick.label, 28, py + 4);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// limit to max 20 ticks, all multiples of 5</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const baseStep = 5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const maxTicks = 20;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const stepMultiplier = Math.max(1, Math.ceil(displayedMaxX / (baseStep * maxTicks)));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const xTickStep = baseStep * stepMultiplier;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let xv = 0; xv &lt;= displayedMaxX + 1e-9; xv += xTickStep) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const px = xScale(xv);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.moveTo(px, pad.top);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.lineTo(px, h - pad.bottom);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const label = xv.toFixed(0);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>targetCtx.fillText(label, px - targetCtx.measureText(label).width / 2, h - pad.bottom + 16);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.strokeStyle = '#94a3b8';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineWidth = 1.5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.moveTo(pad.left, pad.top);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineTo(pad.left, h - pad.bottom);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineTo(w - pad.right, h - pad.bottom);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.stroke();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.save();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.translate(18, h / 2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.rotate(-Math.PI / 2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillStyle = '#e5e7eb';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.font = '14px Arial';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillText(yLabel, 0, 0);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.restore();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillStyle = '#e5e7eb';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.font = '14px Arial';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// place x-axis label slightly above the bottom, below tick labels without overlap</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillText(xLabel, w / 2 - targetCtx.measureText(xLabel).width / 2, h - pad.bottom + 32);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawCrosshair(targetCtx, scales, xValue, yValue, dotColor) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { w, h, pad, xScale, yScale } = scales;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const sx = xScale(xValue);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const sy = yScale(yValue);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.strokeStyle = 'rgba(255, 255, 255, 0.65)';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineWidth = 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.setLineDash([4, 4]);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.moveTo(sx, pad.top);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineTo(sx, h - pad.bottom);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.moveTo(pad.left, sy);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.lineTo(w - pad.right, sy);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.setLineDash([]);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fillStyle = dotColor;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.arc(sx, sy, 4, 0, Math.PI * 2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>targetCtx.fill();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawChart(data, eqVolumes, maxX) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const displayedMaxX = niceUpperFive(maxX);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const scales = buildScales(canvas, displayedMaxX, 0, 14, 64);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.scales = scales;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { w, h, pad, xScale, yScale } = scales;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.clearRect(0, 0, w, h);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.fillStyle = '#020617';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.fillRect(0, 0, w, h);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawAxes(</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scales,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displayedMaxX,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Array.from({ length: 8 }, (_, i) =&gt; ({ value: i * 2, label: String(i * 2) })),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'pH',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'Base added (mL)'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isDerivativeOverlayOn() &amp;&amp; currentPlot.derivativeData.length) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const derivValues = currentPlot.derivativeData.map(pt =&gt; pt.dpHdV).filter(v =&gt; Number.isFinite(v));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const derivMin = Math.min(...derivValues);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const derivMax = Math.max(...derivValues);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const safeMin = Math.min(0, derivMin);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const safeMax = derivMax === safeMin ? safeMin + 1 : derivMax;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const derivScale = value =&gt; pad.top + (h - pad.top - pad.bottom) - ((value - safeMin) / (safeMax - safeMin)) * (h - pad.top - pad.bottom);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.save();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.strokeStyle = 'rgba(167, 139, 250, 0.95)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineWidth = 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.setLineDash([8, 5]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentPlot.derivativeData.forEach((pt, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const x = xScale(pt.volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const y = derivScale(pt.dpHdV);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (i === 0) ctx.moveTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else ctx.lineTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.setLineDash([]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = 'rgba(167, 139, 250, 0.95)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.font = '12px Arial';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const label = 'dpH/dV';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillText(label, w - pad.right - ctx.measureText(label).width - 4, pad.top + 14);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.restore();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.strokeStyle = '#22c55e';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.lineWidth = 3;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>data.forEach((pt, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const x = xScale(pt.volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const y = yScale(pt.pH);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (i === 0) ctx.moveTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>else ctx.lineTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.stroke();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const last = data[data.length - 1];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.fillStyle = '#22c55e';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.arc(xScale(last.volumeMl), yScale(last.pH), 4, 0, Math.PI * 2);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ctx.fill();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isLiveHoverOn() &amp;&amp; currentPlot.hoverPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawCrosshair(ctx, scales, currentPlot.hoverPoint.volumeMl, currentPlot.hoverPoint.pH, '#ffffff');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (currentPlot.selectedPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const sx = xScale(currentPlot.selectedPoint.volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const sy = yScale(currentPlot.selectedPoint.pH);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.strokeStyle = 'rgba(245, 158, 11, 0.85)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineWidth = 1.25;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.setLineDash([4, 4]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.moveTo(sx, pad.top);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineTo(sx, h - pad.bottom);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.moveTo(pad.left, sy);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.lineTo(w - pad.right, sy);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.setLineDash([]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fillStyle = '#f59e0b';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.arc(sx, sy, 5, 0, Math.PI * 2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ctx.fill();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function drawSpeciesChart(speciesData, speciesNames) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const displayedMaxPH = 14;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const scales = buildScales(speciesCanvas, displayedMaxPH, 0, 1, 64);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesScales = scales;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const { w, h, pad, xScale, yScale } = scales;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>sctx.clearRect(0, 0, w, h);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>sctx.fillStyle = '#020617';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>sctx.fillRect(0, 0, w, h);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawAxes(</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sctx,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scales,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displayedMaxPH,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>[0, 0.25, 0.5, 0.75, 1].map(v =&gt; ({ value: v, label: format(v, 2) })),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'Fraction',</p>
+<p class="p1"><span class="Apple-converted-space">        </span>'pH'</p>
+<p class="p1"><span class="Apple-converted-space">      </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>for (let speciesIndex = 0; speciesIndex &lt; speciesNames.length; speciesIndex++) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sctx.strokeStyle = SPECIES_COLORS[speciesIndex];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sctx.lineWidth = 2.5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sctx.beginPath();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>speciesData.forEach((pt, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const x = xScale(pt.pH);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const y = yScale(pt.fractions[speciesIndex]);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (i === 0) sctx.moveTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>else sctx.lineTo(x, y);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sctx.stroke();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (isLiveHoverOn() &amp;&amp; currentPlot.speciesHoverPoint) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dominantIndex = currentPlot.speciesHoverPoint.fractions.indexOf(Math.max(...currentPlot.speciesHoverPoint.fractions));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawCrosshair(sctx, scales, currentPlot.speciesHoverPoint.pH, currentPlot.speciesHoverPoint.fractions[dominantIndex], '#ffffff');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateLookupModeUI() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const mode = lookupModeEl.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>lookupVolumeFieldEl.style.display = mode === 'ph_from_volume' ? 'block' : 'none';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>lookupPHFieldEl.style.display = mode === 'volume_from_ph' ? 'block' : 'none';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function runLookup() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!currentPlot.data.length) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>lookupResultTextEl.textContent = 'Run the simulation first.';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const mode = lookupModeEl.value;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (mode === 'ph_from_volume') {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const requestedVolume = parseFloat(lookupVolumeInputEl.value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!Number.isFinite(requestedVolume)) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lookupResultTextEl.textContent = 'Enter a valid base volume.';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const volumeMl = clamp(requestedVolume, 0, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pH = interpolatePHFromData(volumeMl);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>lookupResultTextEl.textContent = `At x = ${format(volumeMl, 2)} mL, the titration curve gives pH = ${format(pH, 4)}.`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const targetPH = parseFloat(lookupPHInputEl.value);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!Number.isFinite(targetPH) || targetPH &lt; 0 || targetPH &gt; 14) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lookupResultTextEl.textContent = 'Enter a pH between 0 and 14.';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const volumeMl = solveVolumeForPH(targetPH);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (volumeMl === null) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>lookupResultTextEl.textContent = `pH ${format(targetPH, 2)} is outside the simulated titration-curve range.`;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>lookupResultTextEl.textContent = `For pH = ${format(targetPH, 2)}, the titration curve reaches x = ${format(volumeMl, 3)} mL of added base.`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function refreshPKAVisibility() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const n = getSelectedProtons();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const pKaInputs = [pKa1El, pKa2El, pKa3El, pKa4El, pKa5El];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>radioOptionEls.forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const radio = option.querySelector('input[type="radio"]');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>option.classList.toggle('active', radio.checked);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>pKaInputs.forEach((input, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const enabled = index &lt; n;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input.disabled = !enabled;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input.parentElement.style.display = enabled ? 'block' : 'none';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function nearestPointByCanvasX(event, targetCanvas, plotData, scales, xKey = 'volumeMl') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!plotData.length || !scales) return null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const rect = targetCanvas.getBoundingClientRect();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const scaleXFactor = targetCanvas.width / rect.width;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const clickX = (event.clientX - rect.left) * scaleXFactor;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>let bestPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>let bestDistance = Infinity;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>plotData.forEach(pt =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const px = scales.xScale(pt[xKey]);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dx = Math.abs(px - clickX);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (dx &lt; bestDistance) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bestDistance = dx;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>bestPoint = pt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return bestPoint;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>protonRadios.forEach(radio =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>radio.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>refreshPKAVisibility();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>simulate();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>derivativeRadios.forEach(radio =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>radio.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('#derivativeGroup .radio-option').forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const input = option.querySelector('input[type="radio"]');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>option.classList.toggle('active', input.checked);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>hoverRadios.forEach(radio =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>radio.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('#hoverGroup .radio-option').forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const input = option.querySelector('input[type="radio"]');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>option.classList.toggle('active', input.checked);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!isLiveHoverOn()) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentPlot.hoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>currentPlot.speciesHoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>drawSpeciesChart(currentPlot.speciesData, currentPlot.speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>[acidConcEl, acidVolEl, baseConcEl, pKa1El, pKa2El, pKa3El, pKa4El, pKa5El].forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>el.addEventListener('input', simulate);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>simulateBtn.addEventListener('click', simulate);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lookupModeEl.addEventListener('change', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateLookupModeUI();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>runLookup();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lookupBtn.addEventListener('click', runLookup);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lookupVolumeInputEl.addEventListener('input', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (lookupModeEl.value === 'ph_from_volume') runLookup();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>lookupPHInputEl.addEventListener('input', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (lookupModeEl.value === 'volume_from_ph') runLookup();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>canvas.addEventListener('mousemove', event =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!isLiveHoverOn()) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const nearestPoint = nearestPointByCanvasX(event, canvas, currentPlot.data, currentPlot.scales);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.hoverPoint = nearestPoint;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesHoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawSpeciesChart(currentPlot.speciesData, currentPlot.speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>canvas.addEventListener('mouseleave', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.hoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>canvas.addEventListener('click', event =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const nearestPoint = nearestPointByCanvasX(event, canvas, currentPlot.data, currentPlot.scales);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!nearestPoint) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.selectedPoint = nearestPoint;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateSelectedPointText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>speciesCanvas.addEventListener('mousemove', event =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!isLiveHoverOn()) return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const nearestPoint = nearestPointByCanvasX(event, speciesCanvas, currentPlot.speciesData, currentPlot.speciesScales, 'pH');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesHoverPoint = nearestPoint;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.hoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawChart(currentPlot.data, currentPlot.eqVolumes, currentPlot.maxX);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawSpeciesChart(currentPlot.speciesData, currentPlot.speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>speciesCanvas.addEventListener('mouseleave', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>currentPlot.speciesHoverPoint = null;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>updateHoverText();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>drawSpeciesChart(currentPlot.speciesData, currentPlot.speciesNames);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>refreshPKAVisibility();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateLookupModeUI();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>simulate();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
